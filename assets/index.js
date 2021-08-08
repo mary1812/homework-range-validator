@@ -44,12 +44,11 @@ class RangeValidator {
   }
 
   getValidate(number) {
-    if (number === getterRange) {
+    if (this.getterRange().includes(number)) {
       return number;
     }
     throw new RangeError('The number is not in the specified range ')
 }
 }
-
 
 const test = new RangeValidator(-10, 10);
