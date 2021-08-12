@@ -5,43 +5,40 @@ class RangeValidator {
     this.from = from;
     this.to = to;
   }
-   getterRange () {
-    let test1 = []
-    for (let i = 0; i <= this.to - this.from; i++) {
-      test1[i] =  this.from + i;
-    }
-    return test1;
-  }
   
-  set from(newFrom) {
-    if (isNaN(newFrom) || typeof newFrom !== 'number') {
-    throw new TypeError('Invalid type')
-    }
-
-    if (newFrom > this.to) {
-    throw new RangeError('From must be smallest than To')
-    }
-    this._from = newFrom;
-  }
-
   get from() {
     return this._from;
   }
-
-  set to(newTo) {
-    if (isNaN(newTo) || typeof newTo !== 'number') {
-      throw new TypeError('Invalid type')
+  set from(newFrom) {
+    if (isNaN(newFrom) || typeof newFrom !== 'number') {
+    throw new TypeError('Invalid type');
     }
 
-    if (newTo < this.from) {
-      throw new RangeError('From must be smallest than To')
+    if (newFrom > this.to) {
+    throw new RangeError('From must be smallest than To');
     }
-    this._to = newTo;
+    this._from = newFrom;
   }
 
   get to() {
     return this._to;
   }
+  
+  set to(newTo) {
+    if (isNaN(newTo) || typeof newTo !== 'number') {
+      throw new TypeError('Invalid type');
+    }
+
+    if (newTo < this.from) {
+      throw new RangeError('From must be smallest than To');
+    }
+    this._to = newTo;
+  }
+  
+   get range () {
+     return [this._from, this._to];
+  }
+  
 
   getValidate(number) {
     if (this.getterRange().includes(number)) {
